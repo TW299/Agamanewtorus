@@ -309,7 +309,7 @@ def createMakefile():
     CXX17_FLAG = '-std=c++17'
     if not MSVC and runCompiler(flags=CXX17_FLAG):
         COMPILE_FLAGS_ALL += [CXX17_FLAG]
-    elif not MSVC:
+    else:
        print("need c++17 or later")
 
     # [1f]: special treatment for Intel compiler to restore determinism in OpenMP-parallelized loops
@@ -822,7 +822,7 @@ class MyBuildExt(CmdBuildExt):
         distutils.file_util.copy_file('Makefile.local', os.path.join(self.build_lib, 'Py_agama'))
         distutils.file_util.copy_file(sharedname, os.path.join(self.build_lib, 'Py_agama'))
         distutils.file_util.copy_file(staticname, os.path.join(self.build_lib, 'Py_agama'))
-        #distutils.dir_util.copy_tree('exe', os.path.join(self.build_lib, 'Py_agama', 'exe'))
+        distutils.dir_util.copy_tree('exe', os.path.join(self.build_lib, 'Py_agama', 'exe'))
         if os.path.isdir(EXTRAS_DIR):  # this contains third-party libraries built in the process
             distutils.dir_util.copy_tree(EXTRAS_DIR, os.path.join(self.build_lib, 'Py_agama', EXTRAS_DIR), verbose=False)
 
@@ -837,11 +837,6 @@ if forceYes: say('Assuming yes answers to all interactive questions\n')
 
 if sys.version_info[0]==3 and sys.version_info[1]>=10 and 'install' in sys.argv:
     say('If you are scared by a deprecation warning about running "setup.py install", try "pip install ." instead\n')
-ext_modules = [
-    distutils.extension.Extension(
-        "Py_agama", []
-    ),
-]
 distutils.core.setup(
     name             = 'Py_agama',
     version          = '1.0',
@@ -855,9 +850,9 @@ distutils.core.setup(
     requires         = ['setuptools','wheel','numpy','pybind11'],
     packages         = ['Py_agama'],
     package_dir      = {'Py_agama': '.'},
-    package_data     = {'Py_agama': allFiles('src') +
-        ['Makefile', 'Makefile.msvc', 'Makefile.list', 'Makefile.local.template'] },
-    ext_modules      = ext_modules,
+    package_data     = {'Py_agama': allFiles('src', 'tests') +
+        ['Makefile', 'Makefile.msvc', 'Makefile.list', 'Makefile.local.template','README', 'LICENSE'] },
+    ext_modules      = [distutils.extension.Extension('', [])],
     cmdclass         = {'build_ext': MyBuildExt},
     zip_safe         = False,
     classifiers      = [

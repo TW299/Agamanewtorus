@@ -131,7 +131,7 @@ public:
     virtual ~QuasiSpherical() {}
 
     /** convert actions to E,L,Lz and compute the DF */
-    virtual double value(const actions::Actions &J, const double Jrcrit) const
+    virtual double value(const actions::Actions &J, const double Jrcrit=0) const
     {
         return value(af.E(J), /*L*/ J.Jz + (J.Jphi>=0 ? J.Jphi : -J.Jphi), /*Lz*/ J.Jphi);
     }

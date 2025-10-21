@@ -66,4 +66,4 @@ SOURCES   = \
             utils.cpp \
             utils_config.cpp
 # test and example programs
-TESTSRCS  = 
+TESTSRCS  = test_actions.cpp
