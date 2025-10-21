@@ -70,7 +70,6 @@ namespace actions {
 				dJ->dbyJphi.pphi = 1.0;
 			}
 			if (dA) {
-				//need to sort out derivatives w.r.t phi for both actions and angles
 				dA->dbythetaz.z = dzdthetaz;
 				dA->dbythetaz.R = 0.0;
 				dA->dbythetaz.phi = 0.0;
@@ -80,7 +79,7 @@ namespace actions {
 
 				dA->dbythetar.R = dRdthetar;
 				dA->dbythetar.z = 0.0;
-				dA->dbythetar.phi = dphidthetar;//not correct
+				dA->dbythetar.phi = dphidthetar;
 				dA->dbythetar.pR = dpRdthetar;
 				dA->dbythetar.pz = 0.0;
 				dA->dbythetar.pphi = 0.0;
@@ -97,7 +96,6 @@ namespace actions {
 	}
 	coord::PosMomCar HarmonicOscilattor::aa2pqCar(const ActionAngles& aa, Frequencies* freqs,
 		DerivAct<coord::Car>* dJ, DerivAng<coord::Car>* dA) const {
-		//freqz=omegaz, freqr=2*omega
 		double z = sqrt(2 * aa.Jz / omegaz) * sin(aa.thetaz);
 		double pz = sqrt(2 * aa.Jz * omegaz) * cos(aa.thetaz);
 		double x = sqrt(4 * aa.Jr / omegaR) * sin(aa.thetar / 2);
@@ -144,7 +142,7 @@ namespace actions {
 
 				dA->dbythetar.x = dxdthetar;
 				dA->dbythetar.z = 0.0;
-				dA->dbythetar.y = 0.0;//not correct
+				dA->dbythetar.y = 0.0;
 				dA->dbythetar.px = dpxdthetar;
 				dA->dbythetar.pz = 0.0;
 				dA->dbythetar.py = 0.0;
@@ -216,7 +214,6 @@ namespace actions {
 		drdomegaz = coord::PosMomCar(0, 0, dzdomegaz, 0.0, 0.0, dpzdomegaz);
 		return xv;
 	}
-	//for Jphi=0
 	coord::PosMomCar HarmonicOscilattor::aa2pqCar(const ActionAngles& aa,
 		coord::PosMomCar& drdomegar, coord::PosMomCar& drdomegaz) const {
 		double z = sqrt(2 * aa.Jz / omegaz) * sin(aa.thetaz);
