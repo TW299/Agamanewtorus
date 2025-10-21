@@ -13,7 +13,7 @@ namespace actions {
 		};
 		double H(coord::PosMomCyl& rp) const;
 		double H(Actions J) const {
-			return ((2 * J.Jr + fabs(J.Jphi)) * omegaR + J.Jz);
+			return ((2 * J.Jr + fabs(J.Jphi)) * omegaR + J.Jz*omegaz);
 		}
 		double Omegar() const {
 			return omegaR;
