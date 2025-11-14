@@ -43,7 +43,6 @@ namespace actions {
 			K1 += aa.Jphi == 0 ? 0 : pow_2(aa.Jphi / R) / R;
 			double dpRdthetar = K1 / (2 * omegaR);
 			double dpzdthetaz = -omegaz * z;
-
 			double dphidJr = (aa.Jphi == 0) ? 0 : math::sign(aa.Jphi) * tan(aa.thetar / 2) / (1 + pow_2(K * tan(aa.thetar / 2))) * dedJr / (sqrt(1 - e * e) * (1 - e));
 			double dphidJphi = (aa.Jphi == 0) ? 0 : math::sign(aa.Jphi) * tan(aa.thetar / 2) / (1 + pow_2(K * tan(aa.thetar / 2))) * dedJphi / (sqrt(1 - e * e) * (1 - e));
 			double dphidthetar = (aa.Jphi == 0) ? 0 : -.5 + .5 * math::sign(aa.Jphi) / (1 + pow_2(K * tan(aa.thetar / 2))) * K / pow_2(cos(aa.thetar / 2));
@@ -234,6 +233,4 @@ namespace actions {
 		const double xp = 1 - x;
 		return HarmonicOscilattor(os0.omegaR * x + os1.omegaR * xp, os0.omegaz * x + os1.omegaR * xp);
 	}
-	//*/
-
 }//namespace actions
