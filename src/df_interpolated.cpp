@@ -74,6 +74,7 @@ void InterpolatedDF<N>::eval(const actions::Actions &J, double val[]) const
     for(unsigned int i=0; i<amplitudes.size(); i++)
         val[i] *= amplitudes[i];
 }
+
 template<int N>
 double InterpolatedDF<N>::computePhaseVolume(const unsigned int indComp, const double reqRelError) const
 {
