@@ -1987,7 +1987,7 @@ namespace actions {
 		int maxNumIter = 10;
 		//double tol = defaultTol * tighten;
 		std::vector<double> rep;
-		GenFncFitSeries GFF(indices, 8, 6, fracs, J);
+		GenFncFitSeries GFF(indices, 8, 8, fracs, J);
 		torusFitter TF(J, pot, freqScale, ptrTM, GFF);
 		try {
 			int numIter = math::nonlinearMultiFit(TF, &params[0], tolerance, maxNumIter, &params[0], &Hdisp);
@@ -2145,3 +2145,4 @@ namespace actions {
 	}
 */
 }//namespace
+
