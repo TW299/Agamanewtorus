@@ -8,9 +8,7 @@ namespace actions {
 
 	public:
 		double omegaR, omegaz;
-		HarmonicOscilattor(double _omegaR = 1, double _omegaz = 1) : omegaR(fabs(_omegaR)), omegaz(fabs(_omegaz)) {
-			//printf("oscillator created with omegaR=%f, omegaz=%f\n", omegaR, omegaz);
-		};
+		HarmonicOscilattor(double _omegaR = 1, double _omegaz = 1) : omegaR(fabs(_omegaR)), omegaz(fabs(_omegaz)) {};
 		double H(coord::PosMomCyl& rp) const;
 		double H(Actions J) const {
 			return ((2 * J.Jr + fabs(J.Jphi)) * omegaR + J.Jz*omegaz);
