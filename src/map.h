@@ -216,7 +216,7 @@ class EXP PTHarm : public BasePointTransform{
 		PTHarm PT;
 		ToyMapHarm() {}
 		ToyMapHarm(HarmonicOscilattor _HOs, PTHarm _PT) : HOs(_HOs),PT(_PT){
-			PtrPT=std::make_shared<const PTHarm>(_PT);
+			PtrPT=std::make_shared<const PTHarm>(PT);
 		}
 		Actions pq2J(const coord::PosMomCyl Rzp) const {
 			return HOs.pq2J(PT.revmap(Rzp));
